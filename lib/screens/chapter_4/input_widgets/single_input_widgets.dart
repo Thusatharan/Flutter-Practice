@@ -13,6 +13,7 @@ class _SingleInputScreenState extends State<SingleInputScreen> {
   String _screenText = 'Hacking Started..';
   bool _checkBoxValue = false;
   Communication connection = Communication.sattelite;
+  double _value = 22.0;
 
   @override
   void dispose() {
@@ -37,7 +38,12 @@ class _SingleInputScreenState extends State<SingleInputScreen> {
             Container(
               height: 200,
               width: double.infinity,
-              color: Colors.black,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)),
+                color: Color(0xff2b2b2b),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -46,9 +52,55 @@ class _SingleInputScreenState extends State<SingleInputScreen> {
                       _screenText,
                       style: const TextStyle(
                           color: Color(0xff12ff16),
-                          fontSize: 30,
+                          fontSize: 23,
                           fontFamily: 'Orbitron'),
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        child: Row(
+                          children: [
+                            Text(
+                              _value.round().toString(),
+                              style: TextStyle(
+                                fontSize: 25,
+                                color: (_value >= 50)
+                                    ? const Color(0xffff1f1f)
+                                    : const Color(0xff12ff16),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 7,
+                            ),
+                            Icon(Icons.dangerous_outlined,
+                                color: (_value >= 50)
+                                    ? const Color(0xffff1f1f)
+                                    : const Color(0xff525252)),
+                            SizedBox(
+                              width: 7,
+                            ),
+                            Text(
+                              'High',
+                              style: TextStyle(
+                                  color: (_value >= 75)
+                                      ? const Color(0xffff1f1f)
+                                      : const Color(0xff525252)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Text(
+                          'Asian Server',
+                          style: TextStyle(
+                              color: (connection == Communication.sattelite)
+                                  ? const Color(0xff12ff16)
+                                  : const Color(0xff525252)),
+                        ),
+                      )
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -56,9 +108,9 @@ class _SingleInputScreenState extends State<SingleInputScreen> {
                       Text(
                         'Anonymouse',
                         style: TextStyle(
-                            color: (_checkBoxValue)
-                                ? Color(0xff12ff16)
-                                : Color(0xff525252)),
+                            color: _checkBoxValue
+                                ? const Color(0xff12ff16)
+                                : const Color(0xff525252)),
                       ),
                       Container(
                         child: Row(
@@ -67,8 +119,8 @@ class _SingleInputScreenState extends State<SingleInputScreen> {
                               'Sattelite',
                               style: TextStyle(
                                   color: (connection == Communication.sattelite)
-                                      ? Color(0xff12ff16)
-                                      : Color(0xff525252)),
+                                      ? const Color(0xff12ff16)
+                                      : const Color(0xff525252)),
                             ),
                             const SizedBox(
                               width: 10,
@@ -77,8 +129,8 @@ class _SingleInputScreenState extends State<SingleInputScreen> {
                               'Wifi',
                               style: TextStyle(
                                   color: (connection == Communication.wifi)
-                                      ? Color(0xff12ff16)
-                                      : Color(0xff525252)),
+                                      ? const Color(0xff12ff16)
+                                      : const Color(0xff525252)),
                             ),
                             const SizedBox(
                               width: 10,
@@ -88,8 +140,8 @@ class _SingleInputScreenState extends State<SingleInputScreen> {
                               style: TextStyle(
                                   color:
                                       (connection == Communication.mobile_data)
-                                          ? Color(0xff12ff16)
-                                          : Color(0xff525252)),
+                                          ? const Color(0xff12ff16)
+                                          : const Color(0xff525252)),
                             ),
                           ],
                         ),
@@ -100,7 +152,7 @@ class _SingleInputScreenState extends State<SingleInputScreen> {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: Column(
                 children: [
                   SubHeading(subheading: 'Text Field'),
@@ -178,6 +230,19 @@ class _SingleInputScreenState extends State<SingleInputScreen> {
                           });
                         }),
                   ),
+                  SubHeading(subheading: 'Slider'),
+                  Slider(
+                    label: _value.round().toString(),
+                    min: 0,
+                    max: 100,
+                    divisions: 100,
+                    value: _value,
+                    onChanged: (double val) {
+                      setState(() {
+                        _value = val;
+                      });
+                    },
+                  )
                 ],
               ),
             )

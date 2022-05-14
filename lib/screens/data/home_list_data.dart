@@ -20,4 +20,13 @@ List<HomeList> homelist = <HomeList>[
     subtitle: 'Chapter 4 - Value Widgets',
     routeName: '/input',
   ),
+  HomeList(
+    icon: const Icon(
+      Icons.api_rounded,
+      color: Colors.indigo,
+    ),
+    title: 'API',
+    subtitle: 'Online',
+    routeName: '/api_people_list',
+  ),
 ];

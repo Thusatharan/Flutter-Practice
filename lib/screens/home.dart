@@ -9,47 +9,58 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        title: const Text('Flutter Learning'),
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(
-                alignment: Alignment.center,
-                child: const Text(
-                  'Topics',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                )),
-          ),
-          Expanded(
-            flex: 5,
-            child: Container(
-              width: double.infinity,
-              child: ListView.builder(
-                  itemCount: homeListData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      tileColor: Colors.grey.shade200,
-                      leading: homeListData[index].icon,
-                      title: Text(homeListData[index].title),
-                      subtitle: Text(homeListData[index].subtitle),
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, homeListData[index].routeName);
-                      },
-                    );
-                  }),
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage('assets/images/bg.jpg'),
+        fit: BoxFit.cover,
+      )),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.indigo,
+          title: const Text('Flutter Learning'),
+        ),
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Topics',
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  )),
             ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.menu_book_rounded),
-        onPressed: () {},
+            Expanded(
+              flex: 5,
+              child: Container(
+                width: double.infinity,
+                child: ListView.builder(
+                    itemCount: homeListData.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          tileColor: Colors.white38,
+                          leading: homeListData[index].icon,
+                          title: Text(homeListData[index].title),
+                          subtitle: Text(homeListData[index].subtitle),
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, homeListData[index].routeName);
+                          },
+                        ),
+                      );
+                    }),
+              ),
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.menu_book_rounded),
+          onPressed: () {},
+        ),
       ),
     );
   }

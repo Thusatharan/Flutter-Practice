@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, always_specify_types
 
 import 'package:flutter/material.dart';
+import 'package:learning/screens/chapter_11/api_users_list.dart';
 import 'package:learning/screens/chapter_4/image_widget.dart';
 import 'package:learning/screens/chapter_4/input_widget.dart';
 import 'package:learning/screens/chapter_4/input_widgets/single_input_widgets.dart';
 import './screens/home.dart';
+import 'screens/chapter_11/add_api_users.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +37,8 @@ class MyApp extends StatelessWidget {
         '/image': (BuildContext ctx) => ImageWidgetScreen(),
         '/input': (BuildContext ctx) => InputWidgetScreen(),
         '/single_input': (BuildContext ctx) => SingleInputScreen(),
+        '/api_people_list': (BuildContext ctx) => PeopleList(),
+        '/api_add_people': (BuildContext ctx) => AddPeopleForm(),
       },
     );
   }
